@@ -29,5 +29,31 @@ public class Cliente {
     private Endereco endereco;
     @Enumerated(EnumType.STRING)
     private Perfil perfil;
+    private boolean ativo;
+
+    public Cliente(Cliente cliente) {
+        this.nome = cliente.getNome();
+        this.email = cliente.getEmail();
+        this.telefone = cliente.getTelefone();
+        this.senha = cliente.getSenha();
+        this.cpf = cliente.getCpf();
+        this.endereco = cliente.getEndereco();
+        this.perfil = cliente.getPerfil();
+        this.ativo = true;
+    }
+
+    public void atualizarCliente(Cliente cliente) {
+        this.nome = cliente.getNome();
+        this.email = cliente.getEmail();
+        this.telefone = cliente.getTelefone();
+        this.senha = cliente.getSenha();
+        this.cpf = cliente.getCpf();
+        this.endereco = cliente.getEndereco();
+        this.perfil = cliente.getPerfil();
+    }
+
+    public void desativar() {
+        this.ativo = false;
+    }
 
 }
