@@ -1,5 +1,7 @@
 package br.com.oficina.service;
 
+import br.com.oficina.dto.AlterarClienteDTO;
+import br.com.oficina.dto.CadastroClienteDTO;
 import br.com.oficina.model.Cliente;
 import br.com.oficina.repository.ClienteRepository;
 
@@ -23,16 +25,16 @@ public class ClienteService {
     }
 
     @Transactional
-    public Cliente cadastrarCliente(Cliente cliente) {
-        var novoCliente = new Cliente(cliente);
+    public Cliente cadastrarCliente(CadastroClienteDTO clienteDTO) {
+        var cliente = new Cliente(clienteDTO);
         clienteRepository.persist(cliente);
-        return novoCliente;
+        return cliente;
     }
 
     @Transactional
-    public Cliente alterarCliente(Long id) {
-        var cliente = clienteRepository.findById(id);
-        cliente.atualizarCliente(cliente);
+    public Cliente alterarCliente(AlterarClienteDTO clienteDTO) {
+        var cliente = clienteRepository.findById(clienteDTO.id());
+        cliente.atualizarCliente(clienteDTO);
         return cliente;
     }
 
