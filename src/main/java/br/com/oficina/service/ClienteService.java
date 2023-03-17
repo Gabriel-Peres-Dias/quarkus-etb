@@ -37,8 +37,8 @@ public class ClienteService {
 
     @Transactional
     public Cliente alterarCliente(AlterarClienteDTO clienteDTO) {
-        var cliente = clienteRepository.findById(clienteDTO.id());
-        cliente.atualizarCliente(clienteDTO);
+        var cliente = new Cliente(clienteDTO);
+       clienteRepository.atualizar(cliente);
         return cliente;
     }
 

@@ -54,7 +54,8 @@ public class Cliente {
         this.perfil = cliente.perfil();
     }
 
-    public void atualizarCliente(AlterarClienteDTO cliente) {
+    public Cliente (AlterarClienteDTO cliente) {
+        this.id = cliente.id();
         this.nome = cliente.nome();
         this.email = cliente.email();
         this.telefone = cliente.telefone();
