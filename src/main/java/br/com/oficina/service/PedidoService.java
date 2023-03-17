@@ -8,6 +8,10 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class PedidoService {
 
+    final PedidoRepository pedidoRepository;
+
     @Inject
-    PedidoRepository pedidoRepository;
+    public PedidoService(PedidoRepository pedidoRepository) {
+        this.pedidoRepository = pedidoRepository;
+    }
 }

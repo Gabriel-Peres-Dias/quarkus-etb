@@ -14,17 +14,21 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ServicoResource {
 
+    ServicoRepository servicoRepository;
+
     @Inject
-    ServicoRepository repository;
+    public ServicoResource(ServicoRepository servicoRepository) {
+        this.servicoRepository = servicoRepository;
+    }
 
     @GET
     public List<Servico> listarAll() {
-        return repository.listAll();
+        return servicoRepository.listAll();
     }
 
     @GET
     @Path("{id}")
     public Response listarPorId(@PathParam("id") Long id) {
-        return Response.status(Response.Status.OK).entity(repository.findById(id)).build();
+        return Response.status(Response.Status.OK).entity(servicoRepository.findById(id)).build();
     }
 }

@@ -3,7 +3,6 @@ package br.com.oficina.resource;
 import br.com.oficina.dto.AlterarClienteDTO;
 import br.com.oficina.dto.CadastroClienteDTO;
 import br.com.oficina.dto.ListaClienteDTO;
-import br.com.oficina.model.Cliente;
 import br.com.oficina.service.ClienteService;
 
 import javax.inject.Inject;
@@ -14,8 +13,12 @@ import java.util.stream.Collectors;
 @Path("/cliente")
 public class ClienteResource{
 
-    @Inject
     ClienteService clienteService;
+
+    @Inject
+    public ClienteResource(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
 
     @GET
     @Path("{id}")

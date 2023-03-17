@@ -8,6 +8,10 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class ServicoService {
 
+    final ServicoRepository servicoRepository;
+
     @Inject
-    ServicoRepository servicoRepository;
+    public ServicoService(ServicoRepository servicoRepository) {
+        this.servicoRepository = servicoRepository;
+    }
 }

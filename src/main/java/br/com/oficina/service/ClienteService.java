@@ -13,14 +13,18 @@ import java.util.List;
 @ApplicationScoped
 public class ClienteService {
 
+    final ClienteRepository clienteRepository;
+
     @Inject
-    ClienteRepository clienteRepository;
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
 
     public Cliente buscarClientePorId(Long id) {
         return clienteRepository.findById(id);
     }
 
-    public List<Cliente>buscarTodosClientes() {
+    public List<Cliente> buscarTodosClientes() {
         return clienteRepository.listAll();
     }
 
