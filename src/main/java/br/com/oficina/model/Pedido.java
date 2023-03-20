@@ -24,5 +24,16 @@ public class Pedido {
     @ManyToOne
     @JoinColumn(name = "id_servico")
     private Servico servico;
+    private double valor;
     private LocalDateTime data;
+    Boolean ativo;
+
+    public Pedido(Long id, Cliente cliente, Servico servico, Double valor, LocalDateTime data, Boolean ativo) {
+        this.id = id;
+        this.cliente = cliente;
+        this.servico = servico;
+        this.valor = valor;
+        this.data = data;
+        this.ativo = true;
+    }
 }

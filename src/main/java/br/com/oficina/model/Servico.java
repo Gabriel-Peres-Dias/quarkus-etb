@@ -21,5 +21,4 @@ public class Servico {
     private Long id;
     @Enumerated(EnumType.STRING)
     private Servicos servico;
-    private double valor;
 }
