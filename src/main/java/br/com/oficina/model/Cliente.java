@@ -4,7 +4,6 @@ import br.com.oficina.dto.AlterarClienteDTO;
 import br.com.oficina.dto.CadastroClienteDTO;
 import br.com.oficina.dto.ListaClienteDTO;
 import br.com.oficina.endereco.Endereco;
-import br.com.oficina.enuns.Perfil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,8 +29,6 @@ public class Cliente {
     private String cpf;
     @Embedded
     private Endereco endereco;
-    @Enumerated(EnumType.STRING)
-    private Perfil perfil;
     private boolean ativo;
 
     public Cliente(ListaClienteDTO cliente) {
@@ -51,7 +48,6 @@ public class Cliente {
         this.senha = cliente.senha();
         this.cpf = cliente.cpf();
         this.endereco = cliente.endereco();
-        this.perfil = cliente.perfil();
     }
 
     public Cliente (AlterarClienteDTO cliente) {
@@ -62,7 +58,6 @@ public class Cliente {
         this.senha = cliente.senha();
         this.cpf = cliente.cpf();
         this.endereco = cliente.endereco();
-        this.perfil = cliente.perfil();
     }
 
     public void desativar() {

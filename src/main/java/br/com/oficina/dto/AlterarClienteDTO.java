@@ -1,7 +1,6 @@
 package br.com.oficina.dto;
 
 import br.com.oficina.endereco.Endereco;
-import br.com.oficina.enuns.Perfil;
 
 public record AlterarClienteDTO(
         Long id,
@@ -10,8 +9,7 @@ public record AlterarClienteDTO(
         String telefone,
         String senha,
         String cpf,
-        Endereco endereco,
-        Perfil perfil
+        Endereco endereco
 ) {
 
 }

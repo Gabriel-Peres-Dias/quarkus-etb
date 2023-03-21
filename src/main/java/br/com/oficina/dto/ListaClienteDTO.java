@@ -1,7 +1,6 @@
 package br.com.oficina.dto;
 
 import br.com.oficina.endereco.Endereco;
-import br.com.oficina.enuns.Perfil;
 import br.com.oficina.model.Cliente;
 
 public record ListaClienteDTO(
