@@ -41,7 +41,7 @@ public class ClienteService {
     @Transactional
     public DadosDetalhamentoClienteDTO alterarCliente(AlterarClienteDTO clienteDTO) {
         var cliente = new Cliente(clienteDTO);
-       clienteRepository.atualizar(cliente);
+        clienteRepository.atualizar(cliente);
         return new DadosDetalhamentoClienteDTO(cliente);
     }
 

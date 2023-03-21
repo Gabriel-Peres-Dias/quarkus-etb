@@ -50,7 +50,7 @@ public class Cliente {
         this.endereco = cliente.endereco();
     }
 
-    public Cliente (AlterarClienteDTO cliente) {
+    public Cliente(AlterarClienteDTO cliente) {
         this.id = cliente.id();
         this.nome = cliente.nome();
         this.email = cliente.email();

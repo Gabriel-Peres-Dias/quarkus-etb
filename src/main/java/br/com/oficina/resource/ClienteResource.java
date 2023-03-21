@@ -9,7 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 @Path("/cliente")
-public class ClienteResource{
+public class ClienteResource {
 
     ClienteService clienteService;
 

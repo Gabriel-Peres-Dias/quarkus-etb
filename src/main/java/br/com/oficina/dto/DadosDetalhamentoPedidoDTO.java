@@ -15,7 +15,7 @@ public record DadosDetalhamentoPedidoDTO(
         @JsonbDateFormat("dd-MM-yyyy HH:mm:ss")
         LocalDateTime data
 ) {
-    public DadosDetalhamentoPedidoDTO(Pedido pedido){
+    public DadosDetalhamentoPedidoDTO(Pedido pedido) {
         this(pedido.getId(), pedido.getCliente(), pedido.getServicos(), pedido.getValor(), pedido.getData());
     }
 }

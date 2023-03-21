@@ -7,5 +7,4 @@ public enum Servicos {
     MICRO_PINTURA,
     POLIMENTO_FAROL,
     PINTURA_GERAL;
-
 }
