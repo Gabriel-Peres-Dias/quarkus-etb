@@ -10,6 +10,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class PedidoService {
@@ -23,12 +24,14 @@ public class PedidoService {
         this.clienteRepository = clienteRepository;
     }
 
-    public Pedido buscarPedidoPorId(Long id) {
-        return pedidoRepository.findById(id);
+    public DadosDetalhamentoPedidoDTO buscarPedidoPorId(Long id) {
+        var pedido = pedidoRepository.findById(id);
+        return new DadosDetalhamentoPedidoDTO(pedido);
     }
 
-    public List<Pedido> buscarTodos() {
-        return pedidoRepository.listAll();
+    public List<DadosDetalhamentoPedidoDTO> buscarTodos() {
+        var lista = pedidoRepository.listAll();
+        return lista.stream().map(DadosDetalhamentoPedidoDTO::new).collect(Collectors.toList());
     }
 
     @Transactional

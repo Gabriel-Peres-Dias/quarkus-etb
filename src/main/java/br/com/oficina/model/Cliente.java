@@ -2,7 +2,7 @@ package br.com.oficina.model;
 
 import br.com.oficina.dto.AlterarClienteDTO;
 import br.com.oficina.dto.CadastroClienteDTO;
-import br.com.oficina.dto.ListaClienteDTO;
+import br.com.oficina.dto.DadosDetalhamentoClienteDTO;
 import br.com.oficina.endereco.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,7 +31,7 @@ public class Cliente {
     private Endereco endereco;
     private boolean ativo;
 
-    public Cliente(ListaClienteDTO cliente) {
+    public Cliente(DadosDetalhamentoClienteDTO cliente) {
         this.ativo = true;
         this.nome = cliente.nome();
         this.email = cliente.email();
@@ -58,6 +58,7 @@ public class Cliente {
         this.senha = cliente.senha();
         this.cpf = cliente.cpf();
         this.endereco = cliente.endereco();
+        this.ativo = true;
     }
 
     public void desativar() {
