@@ -2,9 +2,7 @@ package br.com.oficina.dto;
 
 import javax.validation.constraints.NotEmpty;
 
-public record AlterarFuncionarioDTO(
-        @NotEmpty
-        Long id,
+public record CadastroFuncionarioDTO(
         @NotEmpty
         String nome,
         @NotEmpty

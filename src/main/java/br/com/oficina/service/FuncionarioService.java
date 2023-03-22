@@ -2,7 +2,7 @@ package br.com.oficina.service;
 
 import br.com.oficina.dto.AlterarFuncionarioDTO;
 import br.com.oficina.dto.DadosDetalhamentoFuncionarioDTO;
-import br.com.oficina.dto.DadosFuncionarioDTO;
+import br.com.oficina.dto.CadastroFuncionarioDTO;
 import br.com.oficina.model.Funcionario;
 import br.com.oficina.repository.FuncionarioRepository;
 
@@ -29,7 +29,7 @@ public class FuncionarioService {
     }
 
     @Transactional
-    public DadosDetalhamentoFuncionarioDTO cadastrarFuncionario(DadosFuncionarioDTO funcionarioDTO) {
+    public DadosDetalhamentoFuncionarioDTO cadastrarFuncionario(CadastroFuncionarioDTO funcionarioDTO) {
         var funcionario = new Funcionario(funcionarioDTO);
         funcionarioRepository.persist(funcionario);
         return new DadosDetalhamentoFuncionarioDTO(funcionario);

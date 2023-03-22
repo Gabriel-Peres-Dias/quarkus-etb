@@ -31,15 +31,6 @@ public class Cliente {
     private Endereco endereco;
     private boolean ativo;
 
-    public Cliente(DadosDetalhamentoClienteDTO cliente) {
-        this.ativo = true;
-        this.nome = cliente.nome();
-        this.email = cliente.email();
-        this.telefone = cliente.telefone();
-        this.cpf = cliente.cpf();
-        this.endereco = cliente.endereco();
-    }
-
     public Cliente(CadastroClienteDTO cliente) {
         this.ativo = true;
         this.nome = cliente.nome();

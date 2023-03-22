@@ -1,6 +1,6 @@
 package br.com.oficina.resource;
 
-import br.com.oficina.dto.DadosPedidoDTO;
+import br.com.oficina.dto.CadastroPedidoDTO;
 import br.com.oficina.service.PedidoService;
 
 import javax.ws.rs.GET;
@@ -30,7 +30,7 @@ public class PedidoResource {
     }
 
     @POST
-    public Response cadastrarPedido(DadosPedidoDTO pedidoDTO) {
+    public Response cadastrarPedido(CadastroPedidoDTO pedidoDTO) {
         return Response.status(Response.Status.CREATED).entity(pedidoService.efetuarPedido(pedidoDTO)).build();
     }
 }

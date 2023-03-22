@@ -1,9 +1,10 @@
 package br.com.oficina.resource;
 
 import br.com.oficina.dto.AlterarFuncionarioDTO;
-import br.com.oficina.dto.DadosFuncionarioDTO;
+import br.com.oficina.dto.CadastroFuncionarioDTO;
 import br.com.oficina.service.FuncionarioService;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
@@ -28,12 +29,12 @@ public class FuncionarioResource {
     }
 
     @POST
-    public Response criarFuncionario(DadosFuncionarioDTO funcionarioDTO) {
+    public Response criarFuncionario(@Valid CadastroFuncionarioDTO funcionarioDTO) {
         return Response.status(Response.Status.CREATED).entity(funcionarioService.cadastrarFuncionario(funcionarioDTO)).build();
     }
 
     @PUT
-    public Response atualizarFuncionario(AlterarFuncionarioDTO funcionarioDTO) {
+    public Response atualizarFuncionario(@Valid AlterarFuncionarioDTO funcionarioDTO) {
         return Response.status(Response.Status.OK).entity(funcionarioService.atualizarFuncionario(funcionarioDTO)).build();
     }
 
