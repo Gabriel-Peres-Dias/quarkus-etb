@@ -8,8 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class ClienteRepository implements PanacheRepository<Cliente> {
 
-    public Cliente atualizar(Cliente cliente) {
+    public void atualizar(Cliente cliente) {
         getEntityManager().merge(cliente);
-        return cliente;
     }
 }

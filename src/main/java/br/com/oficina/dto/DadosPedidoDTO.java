@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 public record DadosPedidoDTO(
         Long idCliente,
+        Long idFuncionario,
         Servicos servicos,
         @JsonbDateFormat("dd-MM-yyyy HH:mm:ss")
         LocalDateTime data,

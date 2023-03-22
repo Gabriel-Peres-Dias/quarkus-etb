@@ -4,6 +4,7 @@ import br.com.oficina.dto.DadosDetalhamentoPedidoDTO;
 import br.com.oficina.dto.DadosPedidoDTO;
 import br.com.oficina.model.Pedido;
 import br.com.oficina.repository.ClienteRepository;
+import br.com.oficina.repository.FuncionarioRepository;
 import br.com.oficina.repository.PedidoRepository;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -17,11 +18,13 @@ public class PedidoService {
 
     final PedidoRepository pedidoRepository;
     final ClienteRepository clienteRepository;
+    final FuncionarioRepository funcionarioRepository;
 
     @Inject
-    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, ClienteRepository clienteRepository, FuncionarioRepository funcionarioRepository) {
         this.pedidoRepository = pedidoRepository;
         this.clienteRepository = clienteRepository;
+        this.funcionarioRepository = funcionarioRepository;
     }
 
     public DadosDetalhamentoPedidoDTO buscarPedidoPorId(Long id) {
@@ -37,7 +40,8 @@ public class PedidoService {
     @Transactional
     public DadosDetalhamentoPedidoDTO efetuarPedido(DadosPedidoDTO pedidoDTO) {
         var cliente = clienteRepository.findById(pedidoDTO.idCliente());
-        var pedido = new Pedido(null, cliente, pedidoDTO.servicos(), pedidoDTO.valor(), pedidoDTO.data(), null);
+        var funcionario = funcionarioRepository.findById(pedidoDTO.idFuncionario());
+        var pedido = new Pedido(null, cliente, funcionario, pedidoDTO.servicos(), pedidoDTO.valor(), pedidoDTO.data(), null);
         pedidoRepository.persist(pedido);
         return new DadosDetalhamentoPedidoDTO(pedido);
     }

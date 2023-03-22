@@ -11,17 +11,22 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TB_PEDIDOS")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_funcionaro")
+    private Funcionario funcionario;
 
     @Enumerated(EnumType.STRING)
     private Servicos servicos;
@@ -30,9 +35,10 @@ public class Pedido {
     private LocalDateTime data;
     Boolean ativo;
 
-    public Pedido(Long id, Cliente cliente, Servicos servicos, Double valor, LocalDateTime data, Boolean ativo) {
+    public Pedido(Long id, Cliente cliente, Funcionario funcionario, Servicos servicos, Double valor, LocalDateTime data, Boolean ativo) {
         this.id = id;
         this.cliente = cliente;
+        this.funcionario = funcionario;
         this.servicos = servicos;
         this.valor = valor;
         this.data = data;
