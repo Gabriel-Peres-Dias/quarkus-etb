@@ -20,28 +20,29 @@ public class FuncionarioResource {
     @GET
     @Path("{id}")
     public Response buscarFuncionarioPorId(@PathParam("id") Long id) {
-        return Response.status(Response.Status.OK).entity(funcionarioService.buscarFuncionarioPorId(id)).build();
+        return Response.ok(funcionarioService.buscarFuncionarioPorId(id)).build();
     }
 
     @GET
     public Response buscarTodosFuncionarios() {
-        return Response.status(Response.Status.OK).entity(funcionarioService.listarFuncionarios()).build();
+        return Response.ok(funcionarioService.listarFuncionarios()).build();
     }
 
     @POST
     public Response criarFuncionario(@Valid CadastroFuncionarioDTO funcionarioDTO) {
+        //TODO: aprender sobre a URI no POST, de acordo com os verbos http de retornar o id onde encontro o registro criado
         return Response.status(Response.Status.CREATED).entity(funcionarioService.cadastrarFuncionario(funcionarioDTO)).build();
     }
 
     @PUT
     public Response atualizarFuncionario(@Valid AlterarFuncionarioDTO funcionarioDTO) {
-        return Response.status(Response.Status.OK).entity(funcionarioService.atualizarFuncionario(funcionarioDTO)).build();
+        return Response.ok(funcionarioService.atualizarFuncionario(funcionarioDTO)).build();
     }
 
     @DELETE
     @Path("{id}")
     public Response desativarFuncionario(@PathParam("id")Long id) {
         funcionarioService.desativarFuncionario(id);
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.noContent().build();
     }
 }

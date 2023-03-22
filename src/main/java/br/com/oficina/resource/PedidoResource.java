@@ -21,16 +21,17 @@ public class PedidoResource {
     @GET
     @Path("/{id}")
     public Response buscarPedidoPorId(@PathParam("id") Long id) {
-        return Response.status(Response.Status.OK).entity(pedidoService.buscarPedidoPorId(id)).build();
+        return Response.ok(pedidoService.buscarPedidoPorId(id)).build();
     }
 
     @GET
     public Response buscarPedidoPorId() {
-        return Response.status(Response.Status.OK).entity(pedidoService.buscarTodos()).build();
+        return Response.ok(pedidoService.buscarTodos()).build();
     }
 
     @POST
     public Response cadastrarPedido(CadastroPedidoDTO pedidoDTO) {
+        //TODO: aprender sobre a URI no POST, de acordo com os verbos http de retornar o id onde encontro o registro criado
         return Response.status(Response.Status.CREATED).entity(pedidoService.efetuarPedido(pedidoDTO)).build();
     }
 }

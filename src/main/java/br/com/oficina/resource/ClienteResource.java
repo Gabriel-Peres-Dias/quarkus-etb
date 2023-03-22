@@ -37,7 +37,7 @@ public class ClienteResource {
     }
 
     @PUT
-    public Response alterarCliente(@Valid  AlterarClienteDTO clienteDTO) {
+    public Response alterarCliente(@Valid AlterarClienteDTO clienteDTO) {
         return Response.ok(clienteService.alterarCliente(clienteDTO)).build();
     }
 

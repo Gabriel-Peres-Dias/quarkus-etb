@@ -1,9 +1,10 @@
 package br.com.oficina.dto;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public record AlterarFuncionarioDTO(
-        @NotEmpty
+        @NotNull
         Long id,
         @NotEmpty
         String nome,

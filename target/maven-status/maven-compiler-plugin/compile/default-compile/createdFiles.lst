@@ -1,4 +1,3 @@
-br\com\oficina\dto\DadosPedidoDTO.class
 br\com\oficina\service\PedidoService.class
 br\com\oficina\dto\CadastroClienteDTO.class
 br\com\oficina\dto\DadosDetalhamentoPedidoDTO.class
@@ -14,11 +13,12 @@ br\com\oficina\enuns\Servicos.class
 META-INF\panache-archive.marker
 br\com\oficina\dto\AlterarClienteDTO.class
 br\com\oficina\service\ClienteService.class
+br\com\oficina\dto\CadastroFuncionarioDTO.class
 br\com\oficina\model\Pedido.class
 br\com\oficina\resource\ClienteResource.class
+br\com\oficina\dto\CadastroPedidoDTO.class
 br\com\oficina\model\Cliente.class
 br\com\oficina\service\FuncionarioService.class
 br\com\oficina\repository\ClienteRepository.class
 br\com\oficina\resource\FuncionarioResource.class
-br\com\oficina\dto\DadosFuncionarioDTO.class
 br\com\oficina\GreetingResource.class
