@@ -8,15 +8,19 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 
 @Path("/cliente")
 public class ClienteResource {
 
-    ClienteService clienteService;
+    final ClienteService clienteService;
+    final UriInfo uriInfo;
 
     @Inject
-    public ClienteResource(ClienteService clienteService) {
+    public ClienteResource(ClienteService clienteService, UriInfo uriInfo) {
         this.clienteService = clienteService;
+        this.uriInfo = uriInfo;
     }
 
     @GET
