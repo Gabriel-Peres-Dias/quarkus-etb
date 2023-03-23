@@ -1,11 +1,14 @@
 package br.com.oficina.resource;
 
 import br.com.oficina.dto.AlterarFuncionarioDTO;
-import br.com.oficina.dto.DadosFuncionarioDTO;
+import br.com.oficina.dto.CadastroFuncionarioDTO;
 import br.com.oficina.service.FuncionarioService;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @Path("/funcionario")
 public class FuncionarioResource {
@@ -19,28 +22,30 @@ public class FuncionarioResource {
     @GET
     @Path("{id}")
     public Response buscarFuncionarioPorId(@PathParam("id") Long id) {
-        return Response.status(Response.Status.OK).entity(funcionarioService.buscarFuncionarioPorId(id)).build();
+        return Response.ok(funcionarioService.buscarFuncionarioPorId(id)).build();
     }
 
     @GET
     public Response buscarTodosFuncionarios() {
-        return Response.status(Response.Status.OK).entity(funcionarioService.listarFuncionarios()).build();
+        return Response.ok(funcionarioService.listarFuncionarios()).build();
     }
 
     @POST
-    public Response criarFuncionario(DadosFuncionarioDTO funcionarioDTO) {
-        return Response.status(Response.Status.CREATED).entity(funcionarioService.cadastrarFuncionario(funcionarioDTO)).build();
+    public Response criarFuncionario(@Valid CadastroFuncionarioDTO funcionarioDTO, @Context UriInfo uriInfo) {
+        var funcionario = funcionarioService.cadastrarFuncionario(funcionarioDTO);
+        var uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(funcionario.id()));
+        return Response.created(uri.build()).entity(funcionario).build();
     }
 
     @PUT
-    public Response atualizarFuncionario(AlterarFuncionarioDTO funcionarioDTO) {
-        return Response.status(Response.Status.OK).entity(funcionarioService.atualizarFuncionario(funcionarioDTO)).build();
+    public Response atualizarFuncionario(@Valid AlterarFuncionarioDTO funcionarioDTO) {
+        return Response.ok(funcionarioService.atualizarFuncionario(funcionarioDTO)).build();
     }
 
     @DELETE
     @Path("{id}")
     public Response desativarFuncionario(@PathParam("id")Long id) {
         funcionarioService.desativarFuncionario(id);
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.noContent().build();
     }
 }

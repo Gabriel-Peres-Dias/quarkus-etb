@@ -1,7 +1,7 @@
 package br.com.oficina.service;
 
 import br.com.oficina.dto.DadosDetalhamentoPedidoDTO;
-import br.com.oficina.dto.DadosPedidoDTO;
+import br.com.oficina.dto.CadastroPedidoDTO;
 import br.com.oficina.model.Pedido;
 import br.com.oficina.repository.ClienteRepository;
 import br.com.oficina.repository.FuncionarioRepository;
@@ -38,7 +38,7 @@ public class PedidoService {
     }
 
     @Transactional
-    public DadosDetalhamentoPedidoDTO efetuarPedido(DadosPedidoDTO pedidoDTO) {
+    public DadosDetalhamentoPedidoDTO efetuarPedido(CadastroPedidoDTO pedidoDTO) {
         var cliente = clienteRepository.findById(pedidoDTO.idCliente());
         var funcionario = funcionarioRepository.findById(pedidoDTO.idFuncionario());
         var pedido = new Pedido(null, cliente, funcionario, pedidoDTO.servicos(), pedidoDTO.valor(), pedidoDTO.data(), null);

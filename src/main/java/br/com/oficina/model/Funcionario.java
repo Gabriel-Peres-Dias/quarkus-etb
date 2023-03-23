@@ -1,7 +1,7 @@
 package br.com.oficina.model;
 
 import br.com.oficina.dto.AlterarFuncionarioDTO;
-import br.com.oficina.dto.DadosFuncionarioDTO;
+import br.com.oficina.dto.CadastroFuncionarioDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class Funcionario {
     private String matricula;
     private boolean status;
 
-    public Funcionario(DadosFuncionarioDTO funcionarioDTO) {
+    public Funcionario(CadastroFuncionarioDTO funcionarioDTO) {
         this.nome = funcionarioDTO.nome();
         this.matricula = funcionarioDTO.matricula();
         this.status = true;
