@@ -7,20 +7,18 @@ import br.com.oficina.service.ClienteService;
 import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 @Path("/cliente")
 public class ClienteResource {
 
     final ClienteService clienteService;
-    final UriInfo uriInfo;
 
     @Inject
-    public ClienteResource(ClienteService clienteService, UriInfo uriInfo) {
+    public ClienteResource(ClienteService clienteService) {
         this.clienteService = clienteService;
-        this.uriInfo = uriInfo;
     }
 
     @GET
@@ -35,9 +33,10 @@ public class ClienteResource {
     }
 
     @POST
-    public Response criarCliente(@Valid CadastroClienteDTO clienteDTO) {
-        //TODO: aprender sobre a URI no POST, de acordo com os verbos http de retornar o id onde encontro o registro criado
-        return Response.status(Response.Status.CREATED).entity(clienteService.cadastrarCliente(clienteDTO)).build();
+    public Response criarCliente(@Valid CadastroClienteDTO clienteDTO, @Context UriInfo uriInfo) {
+        var cliente = clienteService.cadastrarCliente(clienteDTO);
+        var uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(cliente.id()));
+        return Response.created(uri.build()).entity(cliente).build();
     }
 
     @PUT

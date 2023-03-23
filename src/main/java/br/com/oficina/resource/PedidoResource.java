@@ -7,7 +7,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @Path("/pedido")
 public class PedidoResource {
@@ -30,8 +32,9 @@ public class PedidoResource {
     }
 
     @POST
-    public Response cadastrarPedido(CadastroPedidoDTO pedidoDTO) {
-        //TODO: aprender sobre a URI no POST, de acordo com os verbos http de retornar o id onde encontro o registro criado
-        return Response.status(Response.Status.CREATED).entity(pedidoService.efetuarPedido(pedidoDTO)).build();
+    public Response cadastrarPedido(CadastroPedidoDTO pedidoDTO, @Context UriInfo uriInfo) {
+        var pedido = pedidoService.efetuarPedido(pedidoDTO);
+        var uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(pedido.id()));
+        return Response.created(uri.build()).entity(pedido).build();
     }
 }

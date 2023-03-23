@@ -6,7 +6,9 @@ import br.com.oficina.service.FuncionarioService;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @Path("/funcionario")
 public class FuncionarioResource {
@@ -29,9 +31,10 @@ public class FuncionarioResource {
     }
 
     @POST
-    public Response criarFuncionario(@Valid CadastroFuncionarioDTO funcionarioDTO) {
-        //TODO: aprender sobre a URI no POST, de acordo com os verbos http de retornar o id onde encontro o registro criado
-        return Response.status(Response.Status.CREATED).entity(funcionarioService.cadastrarFuncionario(funcionarioDTO)).build();
+    public Response criarFuncionario(@Valid CadastroFuncionarioDTO funcionarioDTO, @Context UriInfo uriInfo) {
+        var funcionario = funcionarioService.cadastrarFuncionario(funcionarioDTO);
+        var uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(funcionario.id()));
+        return Response.created(uri.build()).entity(funcionario).build();
     }
 
     @PUT
