@@ -3,15 +3,15 @@ package br.com.oficina.resource;
 import br.com.oficina.dto.CadastroPedidoDTO;
 import br.com.oficina.service.PedidoService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 @Path("/pedido")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class PedidoResource {
 
     final PedidoService pedidoService;
