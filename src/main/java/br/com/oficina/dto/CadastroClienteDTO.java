@@ -5,23 +5,20 @@ import br.com.oficina.endereco.Endereco;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 public record CadastroClienteDTO(
         @NotBlank
-        @NotEmpty
+        @NotEmpty(message = "Nome não pode ser nulo ou vazio")
         String nome,
-        @NotBlank
-        @Email
+        @NotBlank(message = "Email não pode ser nulo ou vazio")
+        @Email(message = "Email com formato inválido")
         String email,
-        @NotNull
-        @NotBlank
+        @NotBlank(message = "Telefone não pode ser nulo ou vazio")
         String telefone,
-        @NotBlank
+        @NotBlank(message = "Senha não pode ser nulo ou vazio")
         String senha,
-        @NotBlank
+        @NotBlank(message = "CPF não pode ser nulo ou vazio")
         String cpf,
-        @NotNull
         Endereco endereco
 ) {
 }

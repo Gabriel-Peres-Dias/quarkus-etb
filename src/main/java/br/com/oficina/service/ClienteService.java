@@ -3,6 +3,7 @@ package br.com.oficina.service;
 import br.com.oficina.dto.AlterarClienteDTO;
 import br.com.oficina.dto.CadastroClienteDTO;
 import br.com.oficina.dto.DadosDetalhamentoClienteDTO;
+import br.com.oficina.exception.OficinaException;
 import br.com.oficina.model.Cliente;
 import br.com.oficina.repository.ClienteRepository;
 
@@ -23,7 +24,9 @@ public class ClienteService {
     }
 
     public DadosDetalhamentoClienteDTO buscarClientePorId(Long id) {
-        return new DadosDetalhamentoClienteDTO(clienteRepository.findById(id));
+        var cliente = clienteRepository.findById(id);
+        if (cliente == null) throw new OficinaException("Cliente com ID informado não existe na base de dados");
+        return new DadosDetalhamentoClienteDTO(cliente);
     }
 
     public List<DadosDetalhamentoClienteDTO> buscarTodosClientes() {
@@ -48,6 +51,7 @@ public class ClienteService {
     @Transactional
     public void desativarCliente(Long id) {
         var cliente = clienteRepository.findById(id);
+        if (cliente == null) throw new OficinaException("Cliente com ID informado não existe na base de dados");
         cliente.desativar();
     }
 }
