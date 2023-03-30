@@ -1,7 +1,8 @@
 package br.com.oficina.service;
 
-import br.com.oficina.dto.DadosDetalhamentoPedidoDTO;
 import br.com.oficina.dto.CadastroPedidoDTO;
+import br.com.oficina.dto.DadosDetalhamentoPedidoDTO;
+import br.com.oficina.exception.OficinaException;
 import br.com.oficina.model.Pedido;
 import br.com.oficina.repository.ClienteRepository;
 import br.com.oficina.repository.FuncionarioRepository;
@@ -40,7 +41,9 @@ public class PedidoService {
     @Transactional
     public DadosDetalhamentoPedidoDTO efetuarPedido(CadastroPedidoDTO pedidoDTO) {
         var cliente = clienteRepository.findById(pedidoDTO.idCliente());
+        if (cliente == null) throw new OficinaException("Cliente com ID informado não existe na base de dados");
         var funcionario = funcionarioRepository.findById(pedidoDTO.idFuncionario());
+        if (funcionario == null) throw new OficinaException("Funcionario com ID informado não existe na base de dados");
         var pedido = new Pedido(null, cliente, funcionario, pedidoDTO.servicos(), pedidoDTO.valor(), pedidoDTO.data(), null);
         pedidoRepository.persist(pedido);
         return new DadosDetalhamentoPedidoDTO(pedido);

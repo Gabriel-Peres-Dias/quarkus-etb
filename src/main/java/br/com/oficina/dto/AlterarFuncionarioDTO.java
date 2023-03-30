@@ -4,11 +4,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public record AlterarFuncionarioDTO(
-        @NotNull
+        @NotNull(message = "ID não pode ser nulo")
         Long id,
-        @NotEmpty
+        @NotEmpty(message = "Nome não pode nulo ou vazio")
         String nome,
-        @NotEmpty
+        @NotEmpty(message = "Matrícula não pode nulo ou vazio")
         String matricula
 ) {
 }

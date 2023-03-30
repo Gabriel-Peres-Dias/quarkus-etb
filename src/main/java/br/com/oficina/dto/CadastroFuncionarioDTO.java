@@ -3,9 +3,9 @@ package br.com.oficina.dto;
 import javax.validation.constraints.NotEmpty;
 
 public record CadastroFuncionarioDTO(
-        @NotEmpty
+        @NotEmpty(message = "Nome não pode ser nulo ou vazio")
         String nome,
-        @NotEmpty
+        @NotEmpty(message = "Matrículo não pode ser nulo ou vazio")
         String matricula
 ) {
 }

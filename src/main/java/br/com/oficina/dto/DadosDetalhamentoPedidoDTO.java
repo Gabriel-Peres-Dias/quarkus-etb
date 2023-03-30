@@ -4,8 +4,8 @@ import br.com.oficina.enuns.Servicos;
 import br.com.oficina.model.Cliente;
 import br.com.oficina.model.Funcionario;
 import br.com.oficina.model.Pedido;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.json.bind.annotation.JsonbDateFormat;
 import java.time.LocalDateTime;
 
 public record DadosDetalhamentoPedidoDTO(
@@ -14,7 +14,7 @@ public record DadosDetalhamentoPedidoDTO(
         Funcionario Funcionario,
         Servicos servico,
         Double valor,
-        @JsonbDateFormat("dd-MM-yyyy HH:mm:ss")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
         LocalDateTime data
 ) {
     public DadosDetalhamentoPedidoDTO(Pedido pedido) {

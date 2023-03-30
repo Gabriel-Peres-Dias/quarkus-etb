@@ -3,6 +3,7 @@ package br.com.oficina.resource;
 import br.com.oficina.dto.CadastroPedidoDTO;
 import br.com.oficina.service.PedidoService;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -32,7 +33,7 @@ public class PedidoResource {
     }
 
     @POST
-    public Response cadastrarPedido(CadastroPedidoDTO pedidoDTO, @Context UriInfo uriInfo) {
+    public Response cadastrarPedido(@Valid CadastroPedidoDTO pedidoDTO, @Context UriInfo uriInfo) {
         var pedido = pedidoService.efetuarPedido(pedidoDTO);
         var uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(pedido.id()));
         return Response.created(uri.build()).entity(pedido).build();

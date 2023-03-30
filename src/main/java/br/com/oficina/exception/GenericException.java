@@ -12,9 +12,9 @@ public class GenericException implements ExceptionMapper<OficinaException> {
     @Override
     @Produces(MediaType.APPLICATION_JSON)
     public Response toResponse(OficinaException e) {
-        MessageError messageError = new MessageError();
-        messageError.setMensagem(e.getMessage());
-        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(messageError).build();
+        var codigo = Response.Status.BAD_REQUEST.getStatusCode();
+        var messageError = new MessageError(codigo, e.getMessage());
+        return Response.status(Response.Status.BAD_REQUEST).entity(messageError).build();
     }
 
 }
